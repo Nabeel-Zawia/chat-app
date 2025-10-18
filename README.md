@@ -72,3 +72,58 @@ This project demonstrates how to create a multi-user chat in Python, with messag
    ```
 - Serves the HTML page and static assets
 - Uses Flask-SocketIO to handle real-time message broadcasting
+
+2. Frontend
+   ```script.js
+   document.addEventListener('DOMContentLoaded', () => {
+    const socket = io();
+    const messages = document.getElementById('messages');
+    const input = document.getElementById('messeageToSend');
+    const sendBtn = document.getElementById('sendMessage');
+
+    sendBtn.addEventListener('click', () => {
+        const msg = input.value.trim();
+        if (!msg) return;
+        socket.emit('chat message', msg);
+        input.value = '';
+    });
+
+    socket.on('chat message', (data) => {
+        const li = document.createElement('li');
+        if (data.id === socket.id) {
+            li.classList.add('user-message'); 
+        } else {
+            li.classList.add('other-message'); 
+        }
+        li.textContent = data.msg;
+        messages.appendChild(li);
+        messages.scrollTop = messages.scrollHeight;
+    });
+    });
+   ```
+- Connects to the server via Socket.IO
+- Sends messages using socket.emit('chat message', msg)
+- Receives messages using socket.on('chat message', callback)
+- Compares socket.id to distinguish user messages from others
+
+
+## Message Flow
+
+  ```bash
+  User types → frontend emits → server receives → server broadcasts → all clients display
+  ```
+
+
+## Future Features
+
+- Add usernames
+- Show typing indicators
+- Add timestamps to messages
+- Include emojis and rich text support
+- Enhance UI with modern chat styles
+
+
+## Author
+
+Nabeel Zawia
+
