@@ -30,5 +30,45 @@ This project demonstrates how to create a multi-user chat in Python, with messag
 
 1. clone the repository:
   ```bash
-  git clone 
+  git clone https://github.com/Nabeel-Zawia/chat-app.git
   cd chat-app
+  ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the server:
+   ```bash
+   python app.py
+   ```
+4. Open your browser:
+   ```bash
+   http://127.0.0.1:5000
+   ```
+5. Open another browser or device to test real-time messaging.
+
+
+## How It Works
+
+1. Backend
+   ```app.py
+   from flask import Flask, render_template, request
+   from flask_socketio import SocketIO
+
+   app = Flask(__name__)
+   app.config['SECRET_KEY'] = 'secret!'
+   socketio = SocketIO(app)
+
+   @app.route('/')
+   def index():
+      return render_template('index.html')
+
+   @socketio.on('chat message')
+   def handle_message(msg):
+      socketio.emit('chat message', {'msg': msg, 'id': request.sid}, to=None)
+
+   if __name__ == '__main__':
+      socketio.run(app, debug=True, use_reloader=False)
+   ```
+- Serves the HTML page and static assets
+- Uses Flask-SocketIO to handle real-time message broadcasting
