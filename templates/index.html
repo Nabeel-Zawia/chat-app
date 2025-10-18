@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+    <section id="header">
+        <h1>Chat</h1>
+        <ul id="messages"></ul>
+        <div id="messeageInputBox">
+            <input type="text" id="messeageToSend" placeholder="Type Something !!">
+            <button id="sendMessage" type="submit"><img src="https://img.icons8.com/?size=20&id=43928&format=png&color=FF6B6B" alt=""></button>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+@font-face {
+    font-family: grove;
+    src: url(Grove/Grove.woff);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --background: #1E1E2F;
+    --chatContainer:#2A2A3B;
+    --userMessages: #4CAF50;
+    --otherMessages: #3B82F6;
+    --textColor: #E0E0E0;
+    --inputField: #2A2A3B;
+    --inputTextColor:#FFFFFF;
+    --sendButtonBg:#FF6B6B;
+    --sendbuttonHover:  #FF4C4C;
+    --bordersColor: #3C3C50;
+    --borderRadius: 20px;
+    --fontSize: 15px;
+}
+
+body{
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    font-family: grove,sans-serif;
+}
+
+#header{
+    background-color: var(--chatContainer);
+    align-self: center;
+    width: 80%;
+    height: 80%;
+    border-radius: var(--borderRadius);
+    padding: calc(var(--fontSize) * 2);
+    color: var(--textColor);
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#messeageInputBox{
+    position: relative;
+}
+
+#messeageInputBox input{
+    background-color: var(--inputField);
+    border: 2px solid var(--bordersColor);
+    color: var(--inputTextColor);
+    border-radius: var(--borderRadius);
+    padding: var(--fontSize);
+    width: 100%;
+    outline: none;
+}
+
+#messeageInputBox button{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: calc(var(--fontSize) * 2);
+    height: calc(var(--fontSize) * 2);
+    background-color: transparent;
+    border: none;
+    border-radius: var(--borderRadius);
+    transition: all 0.2s ease-in-out;
+}
+
+#messeageInputBox button:hover{
+    transform: scale(1.09);
+    transform: rotate(-90deg);
+}
+
+#messages{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.user-message, .other-message {
+    padding: 8px 12px;
+    border-radius: var(--borderRadius);
+    margin: 5px 0;
+    max-width: 70%;
+    color: var(--textColor);
+    word-wrap: break-word;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+
+.user-message { 
+    background: var(--userMessages); 
+    align-self: flex-end; 
+}
+
+
+.other-message { 
+    background: var(--otherMessages); 
+    align-self: flex-start; 
+}
